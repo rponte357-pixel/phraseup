@@ -8,6 +8,19 @@ const ENTRIES = [
   // ══════════════════════════════════════════════
   
 {
+  id: 91, type: "Idiom", category: "Work", tone: "Decisive", difficulty: "C1",
+  emoji: "⚙️", color: "#0E6655",
+  phrase: "Set the wheels in motion",
+  meaning: "To start a process or series of events that will lead to a particular result.",
+  when_to_use: "When someone takes the first official step to make something happen.",
+  dialogue: [
+    { speaker: "A", line: "Have you started the hiring process yet?" },
+    { speaker: "B", line: "Yes, I've set the wheels in motion — HR posted the job this morning." },
+  ],
+  origin: "From machinery — once the wheels of a mechanism start turning, the whole process runs automatically. Used figuratively since the 19th century.",
+  mistake: "Always plural — 'set the wheel in motion' sounds unnatural. The expression requires 'wheels'.",
+},
+{
   id: 90, type: "Idiom", category: "Work", tone: "Practical", difficulty: "B2",
   emoji: "🐦", color: "#0E6655",
   phrase: "Kill two birds with one stone",
