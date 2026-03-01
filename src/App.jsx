@@ -6,6 +6,20 @@ const ENTRIES = [
   // ══════════════════════════════════════════════
   //  COURAGE
   // ══════════════════════════════════════════════
+  
+{
+  id: 90, type: "Idiom", category: "Work", tone: "Practical", difficulty: "B2",
+  emoji: "🐦", color: "#0E6655",
+  phrase: "Kill two birds with one stone",
+  meaning: "To accomplish two things with a single action, saving time and effort.",
+  when_to_use: "When one action solves two problems or achieves two goals simultaneously.",
+  dialogue: [
+    { speaker: "A", line: "I need to call the supplier and confirm the delivery address." },
+    { speaker: "B", line: "Call them now — you can kill two birds with one stone." },
+  ],
+  origin: "A ancient proverb found in many cultures. First recorded in English in 1656.",
+  mistake: "Always 'one stone', never 'a stone'. The article is fixed in this expression.",
+},
   {
     id: 1, type: "Idiom", category: "Courage", tone: "Serious", difficulty: "C1",
     emoji: "🔫", color: "#B5451B",
