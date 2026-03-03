@@ -208,10 +208,61 @@ Error generating stack: `+o.message+`
   .fu1{animation-delay:0.04s}.fu2{animation-delay:0.08s}.fu3{animation-delay:0.12s}
   .fu4{animation-delay:0.16s}.fu5{animation-delay:0.2s}
 
-  @media(max-width:600px){
-    .hero-h1{font-size:2.2rem}
-    .filter-bar{flex-direction:column;align-items:center}
-    .fdivider{display:none}
+  /* ─── RESPONSIVE: TABLET (≤768px) ─── */
+  @media(max-width:768px){
+    nav{padding:0 1.25rem}
+    .nav-right{font-size:0.7rem}
+    .hero{padding:3rem 1.25rem 2rem}
+    .potd{padding:1.4rem 1.5rem}
+    .potd-phrase{font-size:1.4rem}
+    .cat-tabs{padding:0 1.25rem 1rem}
+    .grid-section{padding:0 1.25rem 4rem}
+    .stats-bar{padding:0 0 1.25rem}
+    .detail-page{padding:1.5rem 1.25rem 4rem}
     .detail-hero{padding:2rem 1.5rem}
+  }
+
+  /* ─── RESPONSIVE: MOBILE (≤480px) ─── */
+  @media(max-width:480px){
+    nav{padding:0 1rem;height:52px}
+    .logo{font-size:1.2rem}
+    .logo-tag{display:none}
+    .nav-right{display:none}
+    .hero{padding:2.25rem 1rem 1.75rem;text-align:center}
+    .hero-eye{font-size:0.6rem;letter-spacing:3px}
+    .hero-h1{font-size:2rem;line-height:1.1}
+    .hero-sub{font-size:0.88rem;margin-bottom:1.75rem}
+    .potd{padding:1.25rem;margin-bottom:1.75rem}
+    .potd-phrase{font-size:1.25rem}
+    .potd-meaning{font-size:0.8rem}
+    .search-wrap{margin-bottom:1rem}
+    .search-wrap input{font-size:0.85rem;padding:0.75rem 1rem 0.75rem 2.6rem}
+    .filter-bar{flex-direction:column;align-items:center;gap:0.5rem;padding:0 0.5rem}
+    .filter-row{justify-content:center}
+    .fdivider{display:none}
+    .f-label{font-size:0.6rem}
+    .chip{font-size:0.72rem;padding:0.25rem 0.7rem}
+    .cat-tabs{padding:0 1rem 0.85rem;gap:0.3rem}
+    .cat-tab{padding:0.4rem 0.75rem;font-size:0.72rem}
+    .grid-section{padding:0 1rem 3.5rem}
+    .stats-bar{padding:0 0 1rem;flex-direction:column;align-items:flex-start;gap:0.4rem}
+    .grid{grid-template-columns:1fr;gap:0.85rem}
+    .card{padding:1.1rem}
+    .card-phrase{font-size:1.05rem}
+    .card-meaning{font-size:0.8rem}
+    .detail-page{padding:1.25rem 1rem 3.5rem}
+    .back-btn{margin-bottom:1.25rem;font-size:0.78rem}
+    .detail-hero{padding:1.6rem 1.25rem;border-radius:16px}
+    .detail-phrase{font-size:1.7rem}
+    .detail-eye{font-size:0.58rem;letter-spacing:2px;flex-wrap:wrap;gap:0.4rem}
+    .detail-tags{gap:0.4rem}
+    .detail-tag{font-size:0.6rem}
+    .dblock{padding:1.25rem;border-radius:12px}
+    .dblock-text{font-size:0.88rem}
+    .origin-block{padding:1.25rem;border-radius:12px}
+    .err-block{padding:1rem 1.25rem;border-radius:12px}
+    .err-txt{font-size:0.85rem}
+    .dialogue{padding:1rem}
+    .d-txt{font-size:0.85rem}
   }
 `;function Of({text:e,phrase:t}){if(!e.toLowerCase().includes(t.toLowerCase()))return g.jsx("span",{children:e});const n=e.toLowerCase().indexOf(t.toLowerCase());return g.jsxs("span",{children:[e.slice(0,n),g.jsx("mark",{children:e.slice(n,n+t.length)}),e.slice(n+t.length)]})}function bf(){const[e,t]=De.useState("home"),[n,r]=De.useState(null),[i,o]=De.useState(""),[l,a]=De.useState("All"),[u,f]=De.useState("All"),[m,h]=De.useState("All"),p=Je[new Date().getDate()%Je.length],w=De.useMemo(()=>Je.filter(s=>{const c=i.toLowerCase(),y=!c||s.phrase.toLowerCase().includes(c)||s.meaning.toLowerCase().includes(c)||s.category.toLowerCase().includes(c)||s.type.toLowerCase().includes(c),S=l==="All"||s.category===l,E=u==="All"||s.tone===u,T=m==="All"||s.type===m;return y&&S&&E&&T}),[i,l,u,m]),k=Je.filter(s=>s.type==="Idiom").length,x=Je.filter(s=>s.type==="Proverb").length,L=s=>{r(s),t("detail"),window.scrollTo(0,0)},d=()=>{t("home"),r(null)};return g.jsxs(g.Fragment,{children:[g.jsx("style",{children:Rf}),g.jsxs("nav",{children:[g.jsxs("div",{className:"logo",onClick:d,children:["Phrase",g.jsx("em",{children:"Up"}),g.jsx("span",{className:"logo-tag",children:"C1 English"})]}),g.jsxs("div",{className:"nav-right",children:[g.jsx("span",{className:"nav-count",children:Je.length})," expressions · ",g.jsx("span",{className:"nav-count",children:k})," idioms · ",g.jsx("span",{className:"nav-count",children:x})," proverbs"]})]}),e==="home"&&g.jsxs(g.Fragment,{children:[g.jsxs("div",{className:"hero",children:[g.jsx("div",{className:"hero-eye fu",children:"✦ Advanced English Expressions"}),g.jsxs("h1",{className:"hero-h1 fu fu1",children:["Speak English like",g.jsx("br",{}),"a ",g.jsx("em",{children:"native speaker"})]}),g.jsxs("p",{className:"hero-sub fu fu2",children:["Master C1 idioms and proverbs with real context, mini dialogues,",g.jsx("br",{}),"origin stories — not just definitions."]}),g.jsxs("div",{className:"potd fu fu3",onClick:()=>L(p),children:[g.jsx("div",{className:"potd-lbl",children:"✦ Expression of the Day"}),g.jsxs("div",{className:"potd-phrase",children:[p.emoji,' "',p.phrase,'"']}),g.jsx("div",{className:"potd-meaning",children:p.meaning}),g.jsx("span",{className:"potd-type",children:p.type})]}),g.jsxs("div",{className:"search-wrap fu fu4",children:[g.jsx("span",{className:"search-icon",children:"🔍"}),g.jsx("input",{type:"text",placeholder:"Search idioms, proverbs, or topics…",value:i,onChange:s=>o(s.target.value)})]}),g.jsxs("div",{className:"filter-bar fu fu5",children:[g.jsxs("div",{className:"filter-row",children:[g.jsx("span",{className:"f-label",children:"Type"}),Ff.map(s=>g.jsx("button",{className:`chip type-chip ${s.toLowerCase()}${m===s?" active":""}`,onClick:()=>h(s),children:s==="Idiom"?"💬 Idiom":s==="Proverb"?"📜 Proverb":"All"},s))]}),g.jsx("div",{className:"fdivider"}),g.jsxs("div",{className:"filter-row",children:[g.jsx("span",{className:"f-label",children:"Tone"}),Lf.slice(0,7).map(s=>g.jsx("button",{className:`chip${u===s?" active":""}`,onClick:()=>f(s),children:s},s))]})]})]}),g.jsx("div",{className:"cat-tabs",children:zf.map(s=>{const c=s==="All"?"var(--accent)":Df[s];return g.jsxs("button",{className:`cat-tab${l===s?" active":""}`,style:l===s?{background:c}:{},onClick:()=>a(s),children:[g.jsx("span",{className:"cat-tab-icon",children:Qi[s]}),s]},s)})}),g.jsxs("div",{className:"grid-section",children:[g.jsxs("div",{className:"stats-bar",style:{padding:"0 0 1.25rem"},children:[g.jsxs("div",{className:"results-count",children:["Showing ",g.jsx("strong",{children:w.length})," of ",Je.length," expressions"]}),g.jsxs("div",{className:"legend",children:[g.jsxs("div",{className:"legend-item",children:[g.jsx("div",{className:"leg-dot",style:{background:"#1D8348"}})," Idiom"]}),g.jsxs("div",{className:"legend-item",children:[g.jsx("div",{className:"leg-dot",style:{background:"#1A5276"}})," Proverb"]})]})]}),g.jsxs("div",{className:"grid",children:[w.length===0&&g.jsxs("div",{className:"empty",children:[g.jsx("div",{className:"empty-ico",children:"🔍"}),g.jsx("div",{style:{fontWeight:500,marginBottom:"0.25rem"},children:"No expressions found"}),g.jsx("div",{style:{fontSize:"0.82rem"},children:"Try a different keyword or reset your filters"})]}),w.map((s,c)=>g.jsxs("div",{className:"card fu",style:{"--card-color":s.color,animationDelay:`${c*.035}s`},onClick:()=>L(s),children:[g.jsxs("div",{className:"card-top",children:[g.jsx("span",{className:"card-emoji",children:s.emoji}),g.jsxs("div",{className:"card-badges",children:[g.jsx("span",{className:`badge ${s.type.toLowerCase()}`,children:s.type}),g.jsx("span",{className:"badge",children:s.difficulty})]})]}),g.jsxs("div",{className:"card-phrase",children:['"',s.phrase,'"']}),g.jsx("div",{className:"card-meaning",children:s.meaning}),g.jsxs("div",{className:"card-footer",children:[g.jsxs("span",{className:"card-tag",children:[Qi[s.category]," ",s.category]}),g.jsx("span",{className:"card-tag",children:s.tone})]})]},s.id))]})]})]}),e==="detail"&&n&&g.jsxs("div",{className:"detail-page",children:[g.jsx("button",{className:"back-btn fu",onClick:d,children:"← Back to all expressions"}),g.jsxs("div",{className:"detail-hero fu fu1",children:[g.jsxs("div",{className:"detail-eye",children:["✦ C1 English Expression",g.jsx("span",{className:`detail-tag detail-type-tag ${n.type.toLowerCase()}`,children:n.type})]}),g.jsxs("div",{className:"detail-phrase",children:[n.emoji,' "',n.phrase,'"']}),g.jsxs("div",{className:"detail-tags",children:[g.jsxs("span",{className:"detail-tag",children:[Qi[n.category]," ",n.category]}),g.jsx("span",{className:"detail-tag",children:n.tone}),g.jsxs("span",{className:"detail-tag",children:["Level ",n.difficulty]})]})]}),g.jsxs("div",{className:"dblock fu fu2",children:[g.jsx("div",{className:"dblock-lbl",children:"💡 Meaning"}),g.jsx("div",{className:"dblock-text",children:n.meaning})]}),g.jsxs("div",{className:"dblock fu fu2",children:[g.jsx("div",{className:"dblock-lbl",children:"🎭 When to use it"}),g.jsx("div",{className:"dblock-text",children:n.when_to_use})]}),g.jsxs("div",{className:"dblock fu fu3",children:[g.jsx("div",{className:"dblock-lbl",children:"💬 Mini Dialogue"}),g.jsx("div",{className:"dialogue",children:n.dialogue.map((s,c)=>g.jsxs("div",{className:"d-line",children:[g.jsxs("span",{className:"d-spk",children:[s.speaker,":"]}),g.jsx("span",{className:"d-txt",children:g.jsx(Of,{text:s.line,phrase:n.phrase})})]},c))})]}),g.jsxs("div",{className:"origin-block fu fu4",children:[g.jsx("div",{className:"dblock-lbl",style:{color:"var(--muted)"},children:"📜 Origin"}),g.jsx("div",{className:"dblock-text",children:n.origin})]}),g.jsxs("div",{className:"err-block fu fu5",children:[g.jsx("div",{className:"err-lbl",children:"⚠️ Common Mistake"}),g.jsx("div",{className:"err-txt",children:n.mistake})]})]})]})}Yi.createRoot(document.getElementById("root")).render(g.jsx(kc.StrictMode,{children:g.jsx(bf,{})}));
