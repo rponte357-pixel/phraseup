@@ -1397,6 +1397,21 @@ const css = `
   .err-lbl{font-size:0.65rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#DC2626;margin-bottom:0.5rem}
   .err-txt{font-size:0.9rem;line-height:1.65;color:var(--ink)}
 
+	/*  ─────────   estilos son para el formulario de suscripción ───────── */
+
+	.sub-wrap{max-width:480px;margin:0 auto 2rem;text-align:center}
+	.sub-label{font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;font-weight:500}
+	.sub-row{display:flex;gap:0.5rem}
+	.sub-input{flex:1;padding:0.75rem 1.1rem;border:1.5px solid var(--border);border-radius:50px;background:var(--white);font-family:'Outfit',sans-serif;font-size:0.88rem;color:var(--ink);outline:none;transition:border-color 0.2s}
+	.sub-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(181,69,27,0.1)}
+	.sub-btn{padding:0.75rem 1.4rem;background:var(--accent);color:white;border:none;border-radius:50px;font-family:'Outfit',sans-serif;font-size:0.85rem;font-weight:500;cursor:pointer;transition:opacity 0.15s;white-space:nowrap}
+	.sub-btn:hover{opacity:0.88}
+	.sub-btn:disabled{opacity:0.55;cursor:default}
+	.sub-msg{margin-top:0.5rem;font-size:0.82rem;font-family:'Outfit',sans-serif}
+	.sub-msg.success{color:#1D8348}
+	.sub-msg.error{color:#DC2626}
+	@media(max-width:480px){.sub-row{flex-direction:column}}
+
   /* ─── ANIMS ─── */
   @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
   .fu{animation:fadeUp 0.38s ease both}
@@ -1475,6 +1490,47 @@ function HighlightPhrase({ text, phrase }) {
   );
 }
 
+
+// ─── Funcion para subscribirse──────────────────────────────────────────────────────────────────────
+function SubscribeForm() {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('idle');
+  const [msg, setMsg] = useState('');
+
+  const submit = async () => {
+    if (!email.includes('@')) return;
+    setStatus('loading');
+    try {
+      const res = await fetch('https://phraseup-api.onrender.com/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (res.ok) { setStatus('success'); setMsg("🎉 You're subscribed!"); setEmail(''); }
+      else { setStatus('error'); setMsg(data.error || 'Something went wrong.'); }
+    } catch { setStatus('error'); setMsg('Could not connect. Try again later.'); }
+  };
+
+  return (
+    <div className="sub-wrap">
+      <div className="sub-label">✦ Get a new expression every morning</div>
+      <div className="sub-row">
+        <input className="sub-input" type="email" placeholder="your@email.com"
+          value={email} onChange={e => setEmail(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && submit()}
+          disabled={status === 'loading' || status === 'success'} />
+        <button className="sub-btn" onClick={submit}
+          disabled={status === 'loading' || status === 'success'}>
+          {status === 'loading' ? '...' : status === 'success' ? '✓ Done' : 'Subscribe'}
+        </button>
+      </div>
+      {msg && <div className={`sub-msg ${status}`}>{msg}</div>}
+    </div>
+  );
+}
+
+
 // ─── APP ──────────────────────────────────────────────────────────────────────
 export default function App() {
   const [view, setView] = useState("home");
@@ -1532,6 +1588,10 @@ export default function App() {
             <span className="search-icon">🔍</span>
             <input type="text" placeholder="Search idioms, proverbs, or topics…" value={search} onChange={e=>setSearch(e.target.value)} />
           </div>
+
+
+			<SubscribeForm />   {/* ← línea añadida para que es la orden — le dice a React muestra el formulario aquí */}
+
 
           <div className="filter-bar fu fu5">
             <div className="filter-row">
